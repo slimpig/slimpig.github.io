@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//slimpig.github.io">
-  <title>slimpig的博客</title>
+  <title>近期上线问题汇总 | slimpig的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="近期上线问题汇总 担心系统压力，部署了两个tomcat服务，用nginx做了个负载，然而却没有做session共享，结果两台机器串来串去，有时取不到session，导致信息展示时有时无，无奈先撤了负载均衡。 系统不堪重负，cpu直接爆掉，无法及时优化，只能先把数据库连接的进程直接杀掉 而后开始优化，加了session共享，优化了一个list嵌套for循环的查询，此时cpu使用率将至40%-50%">
+  <meta name="description" content="担心系统压力，部署了两个tomcat服务，用nginx做了个负载，然而却没有做session共享，结果两台机器串来串去，有时取不到session，导致信息展示时有时无，无奈先撤了负载均衡。 系统不堪重负，cpu直接爆掉，无法及时优化，只能先把数据库连接的进程直接杀掉 而后开始优化，加了session共享，优化了一个list嵌套for循环的查询，此时cpu使用率将至40%-50% 查询结果比实际期">
 <meta name="keywords" content="java,程序媛,架构,SpringMVC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="slimpig的博客">
+<meta property="og:title" content="近期上线问题汇总">
 <meta property="og:url" content="//slimpig.github.io/2018/11/14/produce-error/index.html">
 <meta property="og:site_name" content="slimpig的博客">
-<meta property="og:description" content="近期上线问题汇总 担心系统压力，部署了两个tomcat服务，用nginx做了个负载，然而却没有做session共享，结果两台机器串来串去，有时取不到session，导致信息展示时有时无，无奈先撤了负载均衡。 系统不堪重负，cpu直接爆掉，无法及时优化，只能先把数据库连接的进程直接杀掉 而后开始优化，加了session共享，优化了一个list嵌套for循环的查询，此时cpu使用率将至40%-50%">
-<meta property="og:updated_time" content="2018-11-14T06:39:23.138Z">
+<meta property="og:description" content="担心系统压力，部署了两个tomcat服务，用nginx做了个负载，然而却没有做session共享，结果两台机器串来串去，有时取不到session，导致信息展示时有时无，无奈先撤了负载均衡。 系统不堪重负，cpu直接爆掉，无法及时优化，只能先把数据库连接的进程直接杀掉 而后开始优化，加了session共享，优化了一个list嵌套for循环的查询，此时cpu使用率将至40%-50% 查询结果比实际期">
+<meta property="og:updated_time" content="2018-11-14T06:41:18.791Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="slimpig的博客">
-<meta name="twitter:description" content="近期上线问题汇总 担心系统压力，部署了两个tomcat服务，用nginx做了个负载，然而却没有做session共享，结果两台机器串来串去，有时取不到session，导致信息展示时有时无，无奈先撤了负载均衡。 系统不堪重负，cpu直接爆掉，无法及时优化，只能先把数据库连接的进程直接杀掉 而后开始优化，加了session共享，优化了一个list嵌套for循环的查询，此时cpu使用率将至40%-50%">
+<meta name="twitter:title" content="近期上线问题汇总">
+<meta name="twitter:description" content="担心系统压力，部署了两个tomcat服务，用nginx做了个负载，然而却没有做session共享，结果两台机器串来串去，有时取不到session，导致信息展示时有时无，无奈先撤了负载均衡。 系统不堪重负，cpu直接爆掉，无法及时优化，只能先把数据库连接的进程直接杀掉 而后开始优化，加了session共享，优化了一个list嵌套for循环的查询，此时cpu使用率将至40%-50% 查询结果比实际期">
   
     <link rel="alternative" href="/atom.xml" title="slimpig的博客" type="application/atom+xml">
   
@@ -165,9 +165,24 @@ var _hmt = _hmt || [];
             <article id="post-produce-error" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      近期上线问题汇总
+    </h1>
+  
+
+        
+        <a href="/2018/11/14/produce-error/" class="archive-article-date">
+  	<time datetime="2018-11-14T06:22:25.133Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-14</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="近期上线问题汇总"><a href="#近期上线问题汇总" class="headerlink" title="近期上线问题汇总"></a>近期上线问题汇总</h1><ul>
+        <ul>
 <li>担心系统压力，部署了两个tomcat服务，用nginx做了个负载，然而却没有做session共享，结果两台机器串来串去，有时取不到session，导致信息展示时有时无，无奈先撤了负载均衡。</li>
 <li>系统不堪重负，cpu直接爆掉，无法及时优化，只能先把数据库连接的进程直接杀掉</li>
 <li>而后开始优化，加了session共享，优化了一个list嵌套for循环的查询，此时cpu使用率将至40%-50%</li>
