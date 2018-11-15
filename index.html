@@ -166,24 +166,10 @@ var _hmt = _hmt || [];
     <article id="post-thread-executor" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/15/thread-executor/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/15/thread-executor/" class="archive-article-date">
-  	<time datetime="2018-11-15T08:26:22.590Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-15</time>
-</a>
-        
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="线程池使用记录"><a href="#线程池使用记录" class="headerlink" title="线程池使用记录"></a>线程池使用记录</h1><p>Java5 java.util.concurrent.ThreadPoolExecutor</p>
+        <hr>
+<h2 id="title-线程池使用记录"><a href="#title-线程池使用记录" class="headerlink" title="title: 线程池使用记录"></a>title: 线程池使用记录</h2><p>Java5 java.util.concurrent.ThreadPoolExecutor</p>
 <h3 id="参数介绍"><a href="#参数介绍" class="headerlink" title="参数介绍"></a>参数介绍</h3><ul>
 <li>corePoolSize  核心线程数，指保留的线程池大小（不超过maximumPoolSize值时，线程池中最多有corePoolSize 个线程工作）</li>
 <li>maximumPoolSize 线程池的最大大小（线程池中最大有corePoolSize 个线程可运行）</li>
@@ -214,7 +200,6 @@ var _hmt = _hmt || [];
 <li>offer(E e) 方法则不会抛异常，只会返回boolean值，告诉你添加成功与否，队列已满，当然返回false。</li>
 <li>put(E e) throws InterruptedException方法则一直阻塞（即等待，直到线程池中有线程运行完毕，可以加入队列为止）。</li>
 </ul>
-<hr>
 
       
 
