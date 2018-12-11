@@ -15,7 +15,7 @@
 <meta property="og:url" content="//slimpig.github.io/2018/12/11/springmvc-servlet-welcome/index.html">
 <meta property="og:site_name" content="slimpig的博客">
 <meta property="og:description" content="疑问点项目部署后，打开项目直接调用了controller的一个index方法，并没有调用welcome-file-list里配置的index.html，之前一直以为是因为自己配置的过滤器的原因，直到有一天仔细检查才发现，那个过滤器根本没在用，于是就开始纠结到底是什么原因导致的呢，翻阅了半天资料终于知道了什么原因。 问题分析对于springmvc框架，当我们在地址栏输入一个地址时，配置文件中的ser">
-<meta property="og:updated_time" content="2018-12-11T03:29:06.886Z">
+<meta property="og:updated_time" content="2018-12-11T03:35:25.308Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springmvc默认首页跳转问题">
 <meta name="twitter:description" content="疑问点项目部署后，打开项目直接调用了controller的一个index方法，并没有调用welcome-file-list里配置的index.html，之前一直以为是因为自己配置的过滤器的原因，直到有一天仔细检查才发现，那个过滤器根本没在用，于是就开始纠结到底是什么原因导致的呢，翻阅了半天资料终于知道了什么原因。 问题分析对于springmvc框架，当我们在地址栏输入一个地址时，配置文件中的ser">
@@ -183,8 +183,8 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="疑问点"><a href="#疑问点" class="headerlink" title="疑问点"></a>疑问点</h3><p>项目部署后，打开项目直接调用了controller的一个index方法，并没有调用welcome-file-list里配置的index.html，之前一直以为是因为自己配置的过滤器的原因，直到有一天仔细检查才发现，那个过滤器根本没在用，于是就开始<br>纠结到底是什么原因导致的呢，翻阅了半天资料终于知道了什么原因。</p>
-<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>对于springmvc框架，当我们在地址栏输入一个地址时，配置文件中的servlet会识别，寻找controller方法<br>我们注意到</p>
-<p><url-pattern>/</url-pattern><br>/和/<em>的差别，/也是可以拦截带后缀的请求的，只是优先级比较低，servlet的controller匹配失败才会进行匹配带后缀的请求；/</em>是直接匹配带后缀的请求。<br>而我的项目恰好就是配置了/，兵器正好有个叫index的方法。<br>终于知道了原因，满足</p>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>对于springmvc框架，当我们在地址栏输入一个地址时，配置文件中的servlet会识别，寻找controller方法<br>我们注意到<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>/和/*的差别，/也是可以拦截带后缀的请求的，只是优先级比较低，servlet的controller匹配失败才会进行匹配带后缀的请求；/*是直接匹配带后缀的请求。<br>而我的项目恰好就是配置了/，正好有个叫index的方法。<br>终于知道了原因，满足</p>
 
       
 
