@@ -350,11 +350,24 @@ var _hmt = _hmt || [];
         <ul>
 <li>担心系统压力，部署了两个tomcat服务，用nginx做了个负载，然而却没有做session共享，结果两台机器串来串去，有时取不到session，导致信息展示时有时无，无奈先撤了负载均衡。</li>
 <li>系统不堪重负，cpu直接爆掉，无法及时优化，只能先把数据库连接的进程直接杀掉</li>
-<li>而后开始优化，加了session共享，优化了一个list嵌套for循环的查询，此时cpu使用率将至40%-50%</li>
+<li>而后开始优化，加了session共享，优化了一个list嵌套for循环的查询，此时cpu使用率降至40%-50%</li>
 <li>查询结果比实际期望的结果多，是因为where条件中有一个查询条件是string类型，但是没有加单引号</li>
 <li>问题接踵而至，两个系统对接，一方处理结果无法顺利同步至另一方，结果确实因为一个order by导致的查询结果半天出不来，直接超出了接口的超时时间，修改完成，做了一次版本迭代</li>
 <li>版本迭代时一不小心把cp写成了mv，结果就发现有一个tomcat服务没有了，负载均衡串到那一台机器时无法取到结果</li>
-<li>版本迭代时还同时修改了一个线程池配置参数，结果有吧双方的结果同步搞挂了</li>
+<li>版本迭代时还同时修改了一个线程池配置参数，结果又把双方的结果同步搞挂了</li>
+<li>改了一个公用bean。没有相互告知，查错半天</li>
+<li>之前做过的事情，之后再做同样的事情，还是会忘，第一次错过的坑，第二次还得补上，比如微信支付的例子，因为没有在微信支付里配置安卓的应用签名，导致查错花了3天，而且导致线上的微信app支付一直都是失败的，持续了一两个月竟然没有发现</li>
+</ul>
+<h1 id="项目里用到的但不精，需要优化的"><a href="#项目里用到的但不精，需要优化的" class="headerlink" title="项目里用到的但不精，需要优化的"></a>项目里用到的但不精，需要优化的</h1><ul>
+<li>activemq</li>
+<li>redis</li>
+<li>drools规则引擎</li>
+<li>springmvc 拦截器 注解</li>
+<li>定时器</li>
+<li>多线程</li>
+<li>负载均衡 ngnix session共享</li>
+<li>数据库连接池 mysql</li>
+<li>maven </li>
 </ul>
 
       
@@ -680,7 +693,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 slimpig
+    		&copy; 2019 slimpig
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
