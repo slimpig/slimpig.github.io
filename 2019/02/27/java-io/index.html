@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//slimpig.github.io">
-  <title>springmvc默认首页跳转问题 | slimpig的博客</title>
+  <title>java io模式 | slimpig的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="疑问点项目部署后，打开项目直接调用了controller的一个index方法，并没有调用welcome-file-list里配置的index.html，之前一直以为是因为自己配置的过滤器的原因，直到有一天仔细检查才发现，那个过滤器根本没在用，于是就开始纠结到底是什么原因导致的呢，翻阅了半天资料终于知道了什么原因。 问题分析对于springmvc框架，当我们在地址栏输入一个地址时，配置文件中的ser">
+  <meta name="description" content="BIO 同步并阻塞 NIO 同步非阻塞 AIO 异步非阻塞  #基于NIO实现的框架Netty，Jetty，Mina，Zookeeper Dubbo默认使用Netty作为基础通信组件 tomcat  bio nio apr">
 <meta name="keywords" content="java,程序媛,架构,SpringMVC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="springmvc默认首页跳转问题">
-<meta property="og:url" content="//slimpig.github.io/2018/12/11/springmvc-servlet-welcome/index.html">
+<meta property="og:title" content="java io模式">
+<meta property="og:url" content="//slimpig.github.io/2019/02/27/java-io/index.html">
 <meta property="og:site_name" content="slimpig的博客">
-<meta property="og:description" content="疑问点项目部署后，打开项目直接调用了controller的一个index方法，并没有调用welcome-file-list里配置的index.html，之前一直以为是因为自己配置的过滤器的原因，直到有一天仔细检查才发现，那个过滤器根本没在用，于是就开始纠结到底是什么原因导致的呢，翻阅了半天资料终于知道了什么原因。 问题分析对于springmvc框架，当我们在地址栏输入一个地址时，配置文件中的ser">
-<meta property="og:updated_time" content="2018-12-11T03:35:25.308Z">
+<meta property="og:description" content="BIO 同步并阻塞 NIO 同步非阻塞 AIO 异步非阻塞  #基于NIO实现的框架Netty，Jetty，Mina，Zookeeper Dubbo默认使用Netty作为基础通信组件 tomcat  bio nio apr">
+<meta property="og:updated_time" content="2019-02-27T07:07:29.267Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="springmvc默认首页跳转问题">
-<meta name="twitter:description" content="疑问点项目部署后，打开项目直接调用了controller的一个index方法，并没有调用welcome-file-list里配置的index.html，之前一直以为是因为自己配置的过滤器的原因，直到有一天仔细检查才发现，那个过滤器根本没在用，于是就开始纠结到底是什么原因导致的呢，翻阅了半天资料终于知道了什么原因。 问题分析对于springmvc框架，当我们在地址栏输入一个地址时，配置文件中的ser">
+<meta name="twitter:title" content="java io模式">
+<meta name="twitter:description" content="BIO 同步并阻塞 NIO 同步非阻塞 AIO 异步非阻塞  #基于NIO实现的框架Netty，Jetty，Mina，Zookeeper Dubbo默认使用Netty作为基础通信组件 tomcat  bio nio apr">
   
     <link rel="alternative" href="/atom.xml" title="slimpig的博客" type="application/atom+xml">
   
@@ -162,29 +162,39 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-springmvc-servlet-welcome" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java-io" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      springmvc默认首页跳转问题
+      java io模式
     </h1>
   
 
         
-        <a href="/2018/12/11/springmvc-servlet-welcome/" class="archive-article-date">
-  	<time datetime="2018-12-11T03:10:41.505Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-11</time>
+        <a href="/2019/02/27/java-io/" class="archive-article-date">
+  	<time datetime="2019-02-27T05:57:51.521Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="疑问点"><a href="#疑问点" class="headerlink" title="疑问点"></a>疑问点</h3><p>项目部署后，打开项目直接调用了controller的一个index方法，并没有调用welcome-file-list里配置的index.html，之前一直以为是因为自己配置的过滤器的原因，直到有一天仔细检查才发现，那个过滤器根本没在用，于是就开始<br>纠结到底是什么原因导致的呢，翻阅了半天资料终于知道了什么原因。</p>
-<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>对于springmvc框架，当我们在地址栏输入一个地址时，配置文件中的servlet会识别，寻找controller方法<br>我们注意到<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>/和/*的差别，/也是可以拦截带后缀的请求的，只是优先级比较低，servlet的controller匹配失败才会进行匹配带后缀的请求；/*是直接匹配带后缀的请求。<br>而我的项目恰好就是配置了/，正好有个叫index的方法。<br>终于知道了原因，满足</p>
+        <ul>
+<li>BIO 同步并阻塞</li>
+<li>NIO 同步非阻塞</li>
+<li>AIO 异步非阻塞</li>
+</ul>
+<p>#基于NIO实现的框架<br>Netty，Jetty，Mina，Zookeeper</p>
+<p>Dubbo默认使用Netty作为基础通信组件</p>
+<p>tomcat</p>
+<ul>
+<li>bio</li>
+<li>nio</li>
+<li>apr</li>
+</ul>
 
       
 
@@ -243,7 +253,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://slimpig.github.io/2018/12/11/springmvc-servlet-welcome/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://slimpig.github.io/2019/02/27/java-io/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -257,18 +267,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/02/25/java-trivial/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          想到什么记什么
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/15/thread-executor/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">线程池使用记录</div>
+    <a href="/2019/02/26/mysql-group/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mysql相关语句注意点</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -298,7 +299,7 @@ var _hmt = _hmt || [];
   
 
   
-  <div id="SOHUCS" sid="springmvc-servlet-welcome" ></div> 
+  <div id="SOHUCS" sid="java-io" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cysX3aGWt"; 
