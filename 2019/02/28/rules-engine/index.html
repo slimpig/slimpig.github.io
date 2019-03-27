@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//slimpig.github.io">
-  <title>springmvc默认首页跳转问题 | slimpig的博客</title>
+  <title>规则引擎 | slimpig的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="rete算法 时间冗余性  123RULE1:if (A&amp;gt;B) and D or C then E=100RULE2:if (A&amp;gt;B) and (B&amp;lt;C) then E=200RULE3:if (!(A&amp;gt;B) or (B&amp;lt;C)) then E=300 A&amp;gt;B以及B&amp;lt;C的多次运算造成了时间冗余 产生式系统 working memory：被处理的数据 LHS：">
 <meta name="keywords" content="java,程序媛,架构,SpringMVC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="springmvc默认首页跳转问题">
+<meta property="og:title" content="规则引擎">
 <meta property="og:url" content="//slimpig.github.io/2019/02/28/rules-engine/index.html">
 <meta property="og:site_name" content="slimpig的博客">
 <meta property="og:description" content="rete算法 时间冗余性  123RULE1:if (A&amp;gt;B) and D or C then E=100RULE2:if (A&amp;gt;B) and (B&amp;lt;C) then E=200RULE3:if (!(A&amp;gt;B) or (B&amp;lt;C)) then E=300 A&amp;gt;B以及B&amp;lt;C的多次运算造成了时间冗余 产生式系统 working memory：被处理的数据 LHS：">
-<meta property="og:updated_time" content="2019-02-28T07:27:25.016Z">
+<meta property="og:updated_time" content="2019-03-27T03:00:26.252Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="springmvc默认首页跳转问题">
+<meta name="twitter:title" content="规则引擎">
 <meta name="twitter:description" content="rete算法 时间冗余性  123RULE1:if (A&amp;gt;B) and D or C then E=100RULE2:if (A&amp;gt;B) and (B&amp;lt;C) then E=200RULE3:if (!(A&amp;gt;B) or (B&amp;lt;C)) then E=300 A&amp;gt;B以及B&amp;lt;C的多次运算造成了时间冗余 产生式系统 working memory：被处理的数据 LHS：">
   
     <link rel="alternative" href="/atom.xml" title="slimpig的博客" type="application/atom+xml">
@@ -169,7 +169,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      springmvc默认首页跳转问题
+      规则引擎
     </h1>
   
 
@@ -194,8 +194,7 @@ var _hmt = _hmt || [];
 <li>步骤<br>1.match：找出符合LHS部分的working memory集合<br>2.confilict resolution：选出一个条件被满足的规则<br>3.act：执行RHS的内容<br>4.返回1</li>
 <li>rete算法主要改进Match的处理过程，通过构建一个网络进行匹配。<br>alpha网络：A&gt;B,B&lt;C等各个判断条件进行归类为E1,E2等等，然后把working memory按照E1,E2进行分类，得到了alpha memory的集合。<br>Beta网络：Join节点输入要匹配的两个集合，满足条件后得到了Beta Memory的集合，继续join节点操作，直至完成一个LHS的所有条件，最后得到满足规则的集合</li>
 </ul>
-<p>###主流的规则引擎</p>
-<ul>
+<h3 id="主流的规则引擎"><a href="#主流的规则引擎" class="headerlink" title="主流的规则引擎"></a>主流的规则引擎</h3><ul>
 <li>Jess</li>
 <li>Drools</li>
 <li>ILog 商业产品</li>
