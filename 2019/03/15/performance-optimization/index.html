@@ -15,7 +15,7 @@
 <meta property="og:url" content="//slimpig.github.io/2019/03/15/performance-optimization/index.html">
 <meta property="og:site_name" content="slimpig的博客">
 <meta property="og:description" content="Linux常用命令 top-linux系统进程监控 vmstat-虚拟内存统计 lsof-打开文件列表 tcpdump-网络数据包分析 netstat iostat-输入/输出统计  mysql show processlist； innodb-trx-当期运行的所有事务 innodb-locks-当前出现的锁 innodb_lock_waits-锁等待的对应关系计 show open table">
-<meta property="og:updated_time" content="2019-03-15T03:32:13.780Z">
+<meta property="og:updated_time" content="2019-04-03T07:17:31.504Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="性能优化-慢慢积累中">
 <meta name="twitter:description" content="Linux常用命令 top-linux系统进程监控 vmstat-虚拟内存统计 lsof-打开文件列表 tcpdump-网络数据包分析 netstat iostat-输入/输出统计  mysql show processlist； innodb-trx-当期运行的所有事务 innodb-locks-当前出现的锁 innodb_lock_waits-锁等待的对应关系计 show open table">
@@ -196,9 +196,15 @@ var _hmt = _hmt || [];
 <li>innodb-locks-当前出现的锁</li>
 <li>innodb_lock_waits-锁等待的对应关系计</li>
 <li>show open tables where inuse&gt;0-当前打开表</li>
-<li>show engine innodb status \G: - Innodb状态</li>
+<li>show engine innodb status- Innodb状态</li>
 <li>SHOW STATUS LIKE  ‘innodb_row<em>lock</em>%’-锁性能状态</li>
 <li>sql语句explain</li>
+</ul>
+<h4 id="2019-04-03出现了因为数据库死锁问题导致的系统崩溃，处理问题时完全忘记了自己当时看过这些锁的知识"><a href="#2019-04-03出现了因为数据库死锁问题导致的系统崩溃，处理问题时完全忘记了自己当时看过这些锁的知识" class="headerlink" title="2019-04-03出现了因为数据库死锁问题导致的系统崩溃，处理问题时完全忘记了自己当时看过这些锁的知识"></a>2019-04-03出现了因为数据库死锁问题导致的系统崩溃，处理问题时完全忘记了自己当时看过这些锁的知识</h4><p>在一片慌乱中把所有的进程全部kill掉了后来想追究一下原因，发现日志中有Lock wait timeout exceeded的异常，才想起来是锁表了，<br>然后现在已经不知道到底是哪个sql引起的了，只能期待着下次再出现问题时冷静处理了（此处对自己表示十分无语）<br>出现问题时不要只记得show processlist和kill，记得用下面的语句查一下</p>
+<ul>
+<li>SELECT * FROM information_schema.INNODB_TRX</li>
+<li>SELECT * FROM information_schema.INNODB_LOCKS</li>
+<li>SELECT * FROM information_schema.INNODB_LOCK_WAITS</li>
 </ul>
 
       

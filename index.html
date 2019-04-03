@@ -299,9 +299,15 @@ var _hmt = _hmt || [];
 <li>innodb-locks-当前出现的锁</li>
 <li>innodb_lock_waits-锁等待的对应关系计</li>
 <li>show open tables where inuse&gt;0-当前打开表</li>
-<li>show engine innodb status \G: - Innodb状态</li>
+<li>show engine innodb status- Innodb状态</li>
 <li>SHOW STATUS LIKE  ‘innodb_row<em>lock</em>%’-锁性能状态</li>
 <li>sql语句explain</li>
+</ul>
+<h4 id="2019-04-03出现了因为数据库死锁问题导致的系统崩溃，处理问题时完全忘记了自己当时看过这些锁的知识"><a href="#2019-04-03出现了因为数据库死锁问题导致的系统崩溃，处理问题时完全忘记了自己当时看过这些锁的知识" class="headerlink" title="2019-04-03出现了因为数据库死锁问题导致的系统崩溃，处理问题时完全忘记了自己当时看过这些锁的知识"></a>2019-04-03出现了因为数据库死锁问题导致的系统崩溃，处理问题时完全忘记了自己当时看过这些锁的知识</h4><p>在一片慌乱中把所有的进程全部kill掉了后来想追究一下原因，发现日志中有Lock wait timeout exceeded的异常，才想起来是锁表了，<br>然后现在已经不知道到底是哪个sql引起的了，只能期待着下次再出现问题时冷静处理了（此处对自己表示十分无语）<br>出现问题时不要只记得show processlist和kill，记得用下面的语句查一下</p>
+<ul>
+<li>SELECT * FROM information_schema.INNODB_TRX</li>
+<li>SELECT * FROM information_schema.INNODB_LOCKS</li>
+<li>SELECT * FROM information_schema.INNODB_LOCK_WAITS</li>
 </ul>
 
       
