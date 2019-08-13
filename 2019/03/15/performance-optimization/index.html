@@ -15,7 +15,7 @@
 <meta property="og:url" content="//slimpig.github.io/2019/03/15/performance-optimization/index.html">
 <meta property="og:site_name" content="slimpig的博客">
 <meta property="og:description" content="Linux常用命令 top-linux系统进程监控 vmstat-虚拟内存统计 lsof-打开文件列表 tcpdump-网络数据包分析 netstat iostat-输入/输出统计  mysql show processlist； innodb-trx-当期运行的所有事务 innodb-locks-当前出现的锁 innodb_lock_waits-锁等待的对应关系计 show open table">
-<meta property="og:updated_time" content="2019-08-13T07:28:44.737Z">
+<meta property="og:updated_time" content="2019-08-13T07:30:12.436Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="性能优化-慢慢积累中">
 <meta name="twitter:description" content="Linux常用命令 top-linux系统进程监控 vmstat-虚拟内存统计 lsof-打开文件列表 tcpdump-网络数据包分析 netstat iostat-输入/输出统计  mysql show processlist； innodb-trx-当期运行的所有事务 innodb-locks-当前出现的锁 innodb_lock_waits-锁等待的对应关系计 show open table">
@@ -209,12 +209,9 @@ var _hmt = _hmt || [];
 <h3 id="查看服务器当前的并发"><a href="#查看服务器当前的并发" class="headerlink" title="查看服务器当前的并发"></a>查看服务器当前的并发</h3><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">netstat -an | grep ESTABLISHED | wc -l      tomcat并发访问数量</span><br><span class="line">netstat -nat|grep -i <span class="number">80</span>|wc -l   查看端口的请求总数</span><br><span class="line">netstat -n | awk '/^tcp/ &#123;++S[<span class="variable">$NF</span>]&#125; END &#123;<span class="keyword">for</span> (a <span class="keyword">in</span> S) print a, S[a]&#125;' TCP连接状态等</span><br><span class="line">netstat -nat|awk '&#123;print <span class="variable">$6</span>&#125;'|sort|uniq -c|sort -rn      查看连接数量和状态</span><br><span class="line">netstat -na|grep ESTABLISHED|grep <span class="number">6080</span>|wc -l </span><br><span class="line">netstat -n | awk '/^tcp/ &#123;++<span class="keyword">state</span>[<span class="variable">$NF</span>]&#125; END &#123;<span class="keyword">for</span>(key <span class="keyword">in</span> <span class="keyword">state</span>) print key,<span class="string">"t"</span>,<span class="keyword">state</span>[key]&#125;'</span><br></pre></td></tr></table></figure>
 <p>一直感觉网站的加载速度很慢，最近项目不是很紧张，又开始捣鼓起服务器性能，发现后台服务出现了大量的time_wait，会影响到服务器性能，大概是由于请求太多且频繁，而java服务器回收tcp线程速度比较慢<br>由于服务器用了nginx反向代理，网上找到的主要原因：</p>
 <ul>
-<li><p>nginx开启了keepalive ，而且默认用的http1.1</p>
-</li>
-<li><p>tomcat开启了keepalive，默认也使用http1.1</p>
-</li>
-<li><p>但是nginx代理却使用的http1.0，默认不开启keepalive，所以就造成了大量的TIME-WAID状态的TCP连接</p>
-</li>
+<li>nginx开启了keepalive ，而且默认用的http1.1</li>
+<li>tomcat开启了keepalive，默认也使用http1.1</li>
+<li>但是nginx代理却使用的http1.0，默认不开启keepalive，所以就造成了大量的TIME-WAID状态的TCP连接</li>
 </ul>
 <p>因此要在nginx配置文件中增加如下语句<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">proxy_http_version 1.1;</span><br><span class="line">proxy_set_header<span class="built_in"> Connection </span><span class="string">""</span>;</span><br></pre></td></tr></table></figure></p>
 <p>修改后time_wait的数量由之前的5000以下降到了2500左右，但数量还是很大啊</p>
