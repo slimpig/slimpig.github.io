@@ -15,7 +15,7 @@
 <meta property="og:url" content="//slimpig.github.io/2018/11/14/produce-error/index.html">
 <meta property="og:site_name" content="slimpig的博客">
 <meta property="og:description" content="担心系统压力，部署了两个tomcat服务，用nginx做了个负载，然而却没有做session共享，结果两台机器串来串去，有时取不到session，导致信息展示时有时无，无奈先撤了负载均衡。 系统不堪重负，cpu直接爆掉，无法及时优化，只能先把数据库连接的进程直接杀掉 而后开始优化，加了session共享，优化了一个list嵌套for循环的查询，此时cpu使用率降至40%-50% 查询结果比实际期">
-<meta property="og:updated_time" content="2019-02-20T12:56:52.403Z">
+<meta property="og:updated_time" content="2019-07-31T03:48:12.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="近期上线问题汇总">
 <meta name="twitter:description" content="担心系统压力，部署了两个tomcat服务，用nginx做了个负载，然而却没有做session共享，结果两台机器串来串去，有时取不到session，导致信息展示时有时无，无奈先撤了负载均衡。 系统不堪重负，cpu直接爆掉，无法及时优化，只能先把数据库连接的进程直接杀掉 而后开始优化，加了session共享，优化了一个list嵌套for循环的查询，此时cpu使用率降至40%-50% 查询结果比实际期">
@@ -191,7 +191,12 @@ var _hmt = _hmt || [];
 <li>版本迭代时一不小心把cp写成了mv，结果就发现有一个tomcat服务没有了，负载均衡串到那一台机器时无法取到结果</li>
 <li>版本迭代时还同时修改了一个线程池配置参数，结果又把双方的结果同步搞挂了</li>
 <li>改了一个公用bean。没有相互告知，查错半天</li>
-<li>之前做过的事情，之后再做同样的事情，还是会忘，第一次错过的坑，第二次还得补上，比如微信支付的例子，因为没有在微信支付里配置安卓的应用签名，导致查错花了3天，而且导致线上的微信app支付一直都是失败的，持续了一两个月竟然没有发现</li>
+<li><p>之前做过的事情，之后再做同样的事情，还是会忘，第一次错过的坑，第二次还得补上，比如微信支付的例子，因为没有在微信支付里配置安卓的应用签名，导致查错花了3天，而且导致线上的微信app支付一直都是失败的，持续了一两个月竟然没有发现</p>
+<p>2019-07-31追加</p>
+</li>
+<li>小组里的人编码不规范，写代码不排版，导致很多前端的错误查起来比较耗时</li>
+<li>周末系统突然出现问题，纠结了半天，最后发现竟然是慢查询导致的，mysql单表数据超过了600万，查询条件中没有索引</li>
+<li>最近还深刻的感受到一旦忙的时候其他各种问题更是会集中出现，经常几个系统同时出现问题，然后待上线的项目时间还会特别紧张</li>
 </ul>
 <h1 id="项目里用到的但不精，需要优化的"><a href="#项目里用到的但不精，需要优化的" class="headerlink" title="项目里用到的但不精，需要优化的"></a>项目里用到的但不精，需要优化的</h1><ul>
 <li>activemq</li>

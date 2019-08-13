@@ -15,7 +15,7 @@
 <meta property="og:url" content="//slimpig.github.io/2019/03/15/performance-optimization/index.html">
 <meta property="og:site_name" content="slimpig的博客">
 <meta property="og:description" content="Linux常用命令 top-linux系统进程监控 vmstat-虚拟内存统计 lsof-打开文件列表 tcpdump-网络数据包分析 netstat iostat-输入/输出统计  mysql show processlist； innodb-trx-当期运行的所有事务 innodb-locks-当前出现的锁 innodb_lock_waits-锁等待的对应关系计 show open table">
-<meta property="og:updated_time" content="2019-04-03T07:17:31.504Z">
+<meta property="og:updated_time" content="2019-08-12T12:42:32.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="性能优化-慢慢积累中">
 <meta name="twitter:description" content="Linux常用命令 top-linux系统进程监控 vmstat-虚拟内存统计 lsof-打开文件列表 tcpdump-网络数据包分析 netstat iostat-输入/输出统计  mysql show processlist； innodb-trx-当期运行的所有事务 innodb-locks-当前出现的锁 innodb_lock_waits-锁等待的对应关系计 show open table">
@@ -206,6 +206,7 @@ var _hmt = _hmt || [];
 <li>SELECT * FROM information_schema.INNODB_LOCKS</li>
 <li>SELECT * FROM information_schema.INNODB_LOCK_WAITS</li>
 </ul>
+<h3 id="查看服务器当前的并发"><a href="#查看服务器当前的并发" class="headerlink" title="查看服务器当前的并发"></a>查看服务器当前的并发</h3><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat -an | <span class="type">grep</span> ESTABLISHED | <span class="type">wc</span> -l      tomcat并发访问数量</span><br><span class="line">netstat -nat|<span class="type">grep</span> -i <span class="number">80</span>|<span class="type">wc</span> -l   查看端口的请求总数</span><br><span class="line">netstat -n | <span class="type">awk</span> '/^tcp/ &#123;++S[$NF]&#125; END &#123;<span class="keyword">for</span> (a <span class="built_in">in</span> S) print a, S[a]&#125;' TCP连接状态等</span><br></pre></td></tr></table></figure>
 
       
 

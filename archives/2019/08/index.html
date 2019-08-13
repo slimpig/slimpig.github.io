@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//slimpig.github.io">
-  <title>slimpig的博客</title>
+  <title>Archives: 2019/8 | slimpig的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="在专业的道路上不断前进">
 <meta name="keywords" content="java,程序媛,架构,SpringMVC">
 <meta property="og:type" content="website">
 <meta property="og:title" content="slimpig的博客">
-<meta property="og:url" content="//slimpig.github.io/page/2/index.html">
+<meta property="og:url" content="//slimpig.github.io/archives/2019/08/index.html">
 <meta property="og:site_name" content="slimpig的博客">
 <meta property="og:description" content="在专业的道路上不断前进">
 <meta name="twitter:card" content="summary">
@@ -163,623 +163,47 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-springmvc-core-architecture" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/08/06/mysql-lock/" class="archive-article-date">
+  	<time datetime="2019-08-06T09:34:42.451Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-06</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/25/springmvc-core-architecture/">springmvc核心处理过程</a>
+      <a class="archive-article-title" href="/2019/08/06/mysql-lock/">mysql死锁</a>
     </h1>
   
 
-        
-        <a href="/2019/02/25/springmvc-core-architecture/" class="archive-article-date">
-  	<time datetime="2019-02-25T03:39:25.568Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="DispatcherServlet"><a href="#DispatcherServlet" class="headerlink" title="DispatcherServlet"></a>DispatcherServlet</h3><p>首先用户发送请求，由DispatchServlet进行分发；</p>
-<h3 id="HandlerMapping"><a href="#HandlerMapping" class="headerlink" title="HandlerMapping"></a>HandlerMapping</h3><p>对应于配置文件中的org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping<br>将请求的url和bean名字映射；<br>HanbleMapping把请求映射为HandleExecutionChain对象——包含一个Handler处理器对象（页面控制器，相当于controller），多个HandleerInterceptor拦截器对象，通过这种策略模式，很容易添加新的映射策略；</p>
-<h3 id="HandlerAdapter"><a href="#HandlerAdapter" class="headerlink" title="HandlerAdapter"></a>HandlerAdapter</h3><p>对应于配置文件中的org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter<br>表示所有实现了org.springframework.web.servlet.mvc.Controller接口的Bean可以作为Spring Web MVC中的处理器。如果需要其他类型的处理器可以通过实现HadlerAdapter来解决；<br>HandlerAdapter将会把处理器包装为适配器，从而支持多种类型的处理器，即适配器设计模式的应用，从而很容易支持很多类型的处理器；</p>
-<h3 id="处理器方法调用"><a href="#处理器方法调用" class="headerlink" title="处理器方法调用"></a>处理器方法调用</h3><p>HandlerAdapter将会根据适配的结果调用真正的处理器的功能处理方法，完成功能处理；并返回一个ModelAndView对象（包含模型数据、逻辑视图名）</p>
-<h3 id="ViewResolver"><a href="#ViewResolver" class="headerlink" title="ViewResolver"></a>ViewResolver</h3><p>对应于配置文件中的org.springframework.web.servlet.view.InternalResourceViewResolver；<br>用于支持Servlet、JSP视图解析；<br>viewClass：JstlView表示JSP模板页面需要使用JSTL标签库，classpath中必须包含jstl的相关jar包；<br>prefix和suffix：查找视图页面的前缀和后缀（前缀[逻辑视图名]后缀），比如传进来的逻辑视图名为hello，则该该jsp视图页面应该存放在“WEB-INF/jsp/hello.jsp”；<br>ViewResolver将把逻辑视图名解析为具体的View，通过这种策略模式，很容易更换其他视图技术；</p>
-<h3 id="View-渲染"><a href="#View-渲染" class="headerlink" title="View-渲染"></a>View-渲染</h3><p>View会根据传进来的Model模型数据进行渲染，此处的Model实际是一个Map数据结构，因此很容易支持其他视图技术；</p>
-<h3 id="最后，返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束。"><a href="#最后，返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束。" class="headerlink" title="最后，返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束。"></a>最后，返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束。</h3><h3 id="lt-mvc-annotation-driven-gt"><a href="#lt-mvc-annotation-driven-gt" class="headerlink" title="&lt; mvc:annotation-driven /&gt;"></a>&lt; mvc:annotation-driven /&gt;</h3><p>自动注册DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter<br>用于对@Controller、@RequestMapping的支持<br>@EnableWebMvc与作用一样</p>
-<h3 id="lt-mvc-default-servlet-handler-gt"><a href="#lt-mvc-default-servlet-handler-gt" class="headerlink" title="&lt; mvc:default-servlet-handler/&gt;"></a>&lt; mvc:default-servlet-handler/&gt;</h3><p>当在web.xml 中DispatcherServlet使用<url-pattern>/</url-pattern> 映射时，能映射静态资源。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>XXXX<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>XXXX<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>该DispatcherServlet默认使用WebApplicationContext作为上下文，Spring默认配置文件为“/WEB-INF/XXXX-servlet.xml</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;context-param&gt;</span></span><br><span class="line">      <span class="params">&lt;param-name&gt;</span>contextConfigLocation<span class="params">&lt;/param-name&gt;</span></span><br><span class="line">      <span class="params">&lt;param-value&gt;</span></span><br><span class="line"><span class="symbol">          classpath:</span>spring-common-config.xml,</span><br><span class="line"><span class="symbol">          classpath:</span>spring-budget-config.xml</span><br><span class="line">      <span class="params">&lt;/param-value&gt;</span></span><br><span class="line"><span class="params">&lt;/context-param&gt;</span></span><br><span class="line"><span class="params">&lt;listener&gt;</span>  <span class="params">&lt;listener-class&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="params">&lt;/listener-class&gt;</span></span><br><span class="line"><span class="params">&lt;/listener&gt;</span></span><br></pre></td></tr></table></figure>
-<p>如上配置是Spring集成Web环境的通用配置；一般用于加载除Web层的Bean（如DAO、Service等），以便于与其他任何Web框架集成。<br>ContextLoaderListener初始化的上下文加载的Bean是对于整个应用程序共享的，不管是使用什么表现层技术，一般如DAO层、Service层Bean；<br>DispatcherServlet初始化的上下文加载的Bean是只对Spring Web MVC有效的Bean，如Controller、HandlerMapping、HandlerAdapter等等，该初始化上下文应该只加载Web相关组件。</p>
-<ul>
-<li>DispatcherServlet-&gt;FrameworkServlet-&gt;HttpServletBean-&gt;HttpServlet</li>
-<li>ViewResolver,LocalResover,ThemeResovler(主题解析，一个页面多套风格),MultipartResolver(文件),HandlerExceptionResolver(可以将异常映射到相应统一的错误界面)</li>
-<li>RequestToViewNameTranslator</li>
-<li><p>FlashMapManager</p>
-</li>
-<li><p>Controller接口控制器<br>WebContentGenerator，AbstractController，ServletForwardingController，BaseCommandController，BaseCommandController（实际使用时用它的子类），AbstractCommandController（@ResponseBody，@InitBinder），<br>AbstractFormController，SimpleFormController（@requestMapping），AbstractWizardFormController（处理复杂表单）</p>
-</li>
-</ul>
-<h1 id="客户端缓存控制"><a href="#客户端缓存控制" class="headerlink" title="客户端缓存控制"></a>客户端缓存控制</h1><ul>
-<li>cacheSeconds</li>
-<li>Last-Modified</li>
-<li>ETag</li>
-</ul>
-<p>#发展线<br>spring -&gt; springmvc -&gt; spring Boot -&gt; Spring Clound -&gt; Spring WebFlux(高并发，IO密集型)</p>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/25/springmvc-core-architecture/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-java-trivial" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/25/java-trivial/">想到什么记什么</a>
-    </h1>
-  
-
-        
-        <a href="/2019/02/25/java-trivial/" class="archive-article-date">
-  	<time datetime="2019-02-25T03:27:07.700Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="java表现层"><a href="#java表现层" class="headerlink" title="java表现层"></a>java表现层</h1><ul>
-<li>jsp</li>
-<li>velocity</li>
-<li>freemaker</li>
-<li>顺便了解一下淘宝的kissy </li>
-</ul>
-<h1 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h1><p>long计算没加L，导致溢出，一直没得到想要的结果</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/25/java-trivial/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-springmvc-servlet-welcome" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/11/springmvc-servlet-welcome/">springmvc默认首页跳转问题</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/11/springmvc-servlet-welcome/" class="archive-article-date">
-  	<time datetime="2018-12-11T03:10:41.505Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="疑问点"><a href="#疑问点" class="headerlink" title="疑问点"></a>疑问点</h3><p>项目部署后，打开项目直接调用了controller的一个index方法，并没有调用welcome-file-list里配置的index.html，之前一直以为是因为自己配置的过滤器的原因，直到有一天仔细检查才发现，那个过滤器根本没在用，于是就开始<br>纠结到底是什么原因导致的呢，翻阅了半天资料终于知道了什么原因。</p>
-<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>对于springmvc框架，当我们在地址栏输入一个地址时，配置文件中的servlet会识别，寻找controller方法<br>我们注意到<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>/和/*的差别，/也是可以拦截带后缀的请求的，只是优先级比较低，servlet的controller匹配失败才会进行匹配带后缀的请求；/*是直接匹配带后缀的请求。<br>而我的项目恰好就是配置了/，正好有个叫index的方法。<br>终于知道了原因，满足</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/11/springmvc-servlet-welcome/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-thread-executor" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/15/thread-executor/">线程池使用记录</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/15/thread-executor/" class="archive-article-date">
-  	<time datetime="2018-11-15T08:26:22.590Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java5 java.util.concurrent.ThreadPoolExecutor</p>
-<h3 id="参数介绍"><a href="#参数介绍" class="headerlink" title="参数介绍"></a>参数介绍</h3><ul>
-<li>corePoolSize  核心线程数，指保留的线程池大小（不超过maximumPoolSize值时，线程池中最多有corePoolSize 个线程工作）</li>
-<li>maximumPoolSize 线程池的最大大小（线程池中最大有corePoolSize 个线程可运行）</li>
-<li>keepAliveTime 空闲线程结束的超时时间（当一个线程不工作时，过keepAliveTime 长时间将停止该线程）</li>
-<li>unit 一个枚举，表示 keepAliveTime 的单位（有NANOSECONDS, MICROSECONDS, MILLISECONDS, SECONDS, MINUTES, HOURS, DAYS，7个可选值）</li>
-<li>workQueue 存放任务的队列（存放需要被线程池执行的线程队列）</li>
-<li>handler 拒绝策略（添加任务失败后如何处理该任务）</li>
-</ul>
-<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><ul>
-<li>线程池刚创建时，里面没有一个线程。任务队列是作为参数传进来的。不过，就算队列里面有任务，线程池也不会马上执行它们。</li>
-<li>当调用 execute() 方法添加一个任务时，线程池会做如下判断：<br>  a. 如果正在运行的线程数量小于corePoolSize，那么马上创建线程运行这个任务；<br>  b. 如果正在运行的线程数量大于或等于corePoolSize，那么将这个任务放入队列。<br>  c. 如果这时候队列满了，而且正在运行的线程数量小于maximumPoolSize，那么还是要创建线程运行这个任务；<br>  d. 如果队列满了，而且正在运行的线程数量大于或等于maximumPoolSize，那么线程池会抛出异常，告诉调用者“我不能再接受任务了”。</li>
-<li>当一个线程完成任务时，它会从队列中取下一个任务来执行）</li>
-<li>当一个线程无事可做，超过一定的时间（keepAliveTime）时，线程池会判断，如果当前运行的线程数大于corePoolSize，那么这个线程就被停掉。所以线程池的所有任务完成后，它最终会收缩到 corePoolSize 的大小</li>
-</ul>
-<h3 id="排队"><a href="#排队" class="headerlink" title="排队"></a>排队</h3><ul>
-<li>直接提交。工作队列的默认选项是SynchronousQueue，它将任务直接提交给线程而不保持它们。在此，如果不存在可用于立即运行任务的线程，则试图把任务加入队列将失败，因此会构造一个新的线程。此策略可以避免在处理可能具有内部依赖性的请求集时出现锁。直接提交通常要求无界maximumPoolSizes以避免拒绝新提交的任务。当命令以超过队列所能处理的平均数连续到达时，此策略允许无界线程具有增长的可能性。</li>
-<li>无界队列。使用无界队列（例如，不具有预定义容量的LinkedBlockingQueue-基于链表的阻塞队列）将导致在所有corePoolSize线程都忙时新任务在队列中等待。这样，创建的线程就不会超过corePoolSize。（因此，maximumPoolSize的值也就无效了。）当每个任务完全独立于其他任务，即任务执行互不影响时，适合于使用无界队列；例如，在Web页服务器中。这种排队可用于处理瞬态突发请求，当命令以超过队列所能处理的平均数连续到达时，此策略允许无界线程具有增长的可能性。</li>
-<li>有界队列。当使用有限的maximumPoolSizes时，有界队列（如ArrayBlockingQueue-基于数组的阻塞队列）有助于防止资源耗尽，但是可能较难调整和控制。队列大小和最大池大小可能需要相互折衷：使用大型队列和小型池可以最大限度地降低 CPU 使用率、操作系统资源和上下文切换开销，但是可能导致人工降低吞吐量。如果任务频繁阻塞（例如，如果它们是I/O边界），则系统可能为超过您许可的更多线程安排时间。使用小型队列通常要求较大的池大小，CPU使用率较高，但是可能遇到不可接受的调度开销，这样也会降低吞吐量。</li>
-</ul>
-<h3 id="预处理程序"><a href="#预处理程序" class="headerlink" title="预处理程序"></a>预处理程序</h3><ul>
-<li>在默认的 ThreadPoolExecutor.AbortPolicy中，处理程序遭到拒绝将抛出运行时RejectedExecutionException。</li>
-<li>在 ThreadPoolExecutor.CallerRunsPolicy中，线程调用运行该任务的execute 本身。此策略提供简单的反馈控制机制，能够减缓新任务的提交速度。</li>
-<li>在 ThreadPoolExecutor.DiscardPolicy 中，不能执行的任务将被删除。</li>
-<li>在 ThreadPoolExecutor.DiscardOldestPolicy中，如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）。</li>
-</ul>
-<h3 id="添加线程到队列的方法"><a href="#添加线程到队列的方法" class="headerlink" title="添加线程到队列的方法"></a>添加线程到队列的方法</h3><ul>
-<li>add(E e)方法将抛出IllegalStateException异常，说明队列已满。</li>
-<li>offer(E e) 方法则不会抛异常，只会返回boolean值，告诉你添加成功与否，队列已满，当然返回false。</li>
-<li>put(E e) throws InterruptedException方法则一直阻塞（即等待，直到线程池中有线程运行完毕，可以加入队列为止）。</li>
-</ul>
-<h3 id="线程数如何设置"><a href="#线程数如何设置" class="headerlink" title="线程数如何设置"></a>线程数如何设置</h3><p>任务一般分为CPU密集型、IO密集型和混合型</p>
-<ul>
-<li>CPU密集型任务 尽量使用较小的线程池，一般为CPU核心数+1</li>
-<li>IO密集型任务 可以使用稍大的线程池，一般为2*CPU核心数</li>
-<li>混合型任务可以将任务分成IO密集型和CPU密集型任务，然后分别用不同的线程池去处理。 只要分完之后两个任务的执行时间相差不大，那么就会比串行执行来的高效。因为如果划分之后两个任务执行时间相差甚远，那么先执行完的任务就要等后执行完的任务，最终的时间仍然取决于后执行完的任务，而且还要加上任务拆分与合并的开销，得不偿失。</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/15/thread-executor/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-produce-error" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/14/produce-error/">近期上线问题汇总</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/14/produce-error/" class="archive-article-date">
-  	<time datetime="2018-11-14T06:22:25.133Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>担心系统压力，部署了两个tomcat服务，用nginx做了个负载，然而却没有做session共享，结果两台机器串来串去，有时取不到session，导致信息展示时有时无，无奈先撤了负载均衡。</li>
-<li>系统不堪重负，cpu直接爆掉，无法及时优化，只能先把数据库连接的进程直接杀掉</li>
-<li>而后开始优化，加了session共享，优化了一个list嵌套for循环的查询，此时cpu使用率降至40%-50%</li>
-<li>查询结果比实际期望的结果多，是因为where条件中有一个查询条件是string类型，但是没有加单引号</li>
-<li>问题接踵而至，两个系统对接，一方处理结果无法顺利同步至另一方，结果确实因为一个order by导致的查询结果半天出不来，直接超出了接口的超时时间，修改完成，做了一次版本迭代</li>
-<li>版本迭代时一不小心把cp写成了mv，结果就发现有一个tomcat服务没有了，负载均衡串到那一台机器时无法取到结果</li>
-<li>版本迭代时还同时修改了一个线程池配置参数，结果又把双方的结果同步搞挂了</li>
-<li>改了一个公用bean。没有相互告知，查错半天</li>
-<li><p>之前做过的事情，之后再做同样的事情，还是会忘，第一次错过的坑，第二次还得补上，比如微信支付的例子，因为没有在微信支付里配置安卓的应用签名，导致查错花了3天，而且导致线上的微信app支付一直都是失败的，持续了一两个月竟然没有发现</p>
-<p>2019-07-31追加</p>
-</li>
-<li>小组里的人编码不规范，写代码不排版，导致很多前端的错误查起来比较耗时</li>
-<li>周末系统突然出现问题，纠结了半天，最后发现竟然是慢查询导致的，mysql单表数据超过了600万，查询条件中没有索引</li>
-<li>最近还深刻的感受到一旦忙的时候其他各种问题更是会集中出现，经常几个系统同时出现问题，然后待上线的项目时间还会特别紧张</li>
-</ul>
-<h1 id="项目里用到的但不精，需要优化的"><a href="#项目里用到的但不精，需要优化的" class="headerlink" title="项目里用到的但不精，需要优化的"></a>项目里用到的但不精，需要优化的</h1><ul>
-<li>activemq</li>
-<li>redis</li>
-<li>drools规则引擎</li>
-<li>springmvc 拦截器 注解</li>
-<li>定时器</li>
-<li>多线程</li>
-<li>负载均衡 ngnix session共享</li>
-<li>数据库连接池 mysql</li>
-<li>maven </li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/14/produce-error/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-local-js" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/01/local-js/">手机浏览器无法打开网页</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/01/local-js/" class="archive-article-date">
-  	<time datetime="2018-10-01T02:13:22.690Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>根本没有任何报错，但是手机浏览器打开网页时一直卡死，电脑访问正常</p>
-<p>折腾到半夜依然无从下手，睡了两小时起来继续奋战发现神奇的好了，后来问其他人还是打不开，无奈之下找了同事调试，他那里发现了一个问题</p>
-<p>有个js文件没放在本地，用了远程的网址访问不到</p>
-<p>真的是血淋淋的教训啊</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/01/local-js/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-json-bom" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/26/json-bom/">json格式解析报错</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/26/json-bom/" class="archive-article-date">
-  	<time datetime="2018-06-26T02:21:29.713Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>报错内容：A JSONObject text must begin with ‘{‘ at character 1 of ﻿{</p>
-<p>一个肉眼根本看不出的问题</p>
-<p>写了一个json文件，读取出文件内容并进行解析，解析后即报上述错误，后查资料发现是文件内容是带bom的utf-8</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>用nodepad++将文件调整成不带bom格式即可</p>
-<p>看到有人建议说肉眼看不出，将文件内容转成16进制即可看出异常</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/26/json-bom/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-struts2-ajax-date" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/29/struts2-ajax-date/">struts2中ajax传递参数json格式时间格式报错</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/29/struts2-ajax-date/" class="archive-article-date">
-  	<time datetime="2018-01-29T05:50:09.958Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一个实体类中包含日期格式的字段，传递到后台解析时一直报错unable to parse date</p>
-<p>一开始以为是前台转json的时候报错，前台使用的是JSON.stringify（），围绕该方法检查半天，发现其实报错信息明确写着struts2的报错：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org<span class="selector-class">.apache</span><span class="selector-class">.struts2</span><span class="selector-class">.json</span><span class="selector-class">.JSONException</span>: Unable to parse date from: <span class="number">01</span>/<span class="number">29</span>/<span class="number">2014</span></span><br></pre></td></tr></table></figure></p>
-<p>后百度一下发现果然大家都有同样的困惑。</p>
-<h3 id="struts2默认的日期格式"><a href="#struts2默认的日期格式" class="headerlink" title="struts2默认的日期格式"></a>struts2默认的日期格式</h3><p>struts2中json插件默认的日期格式是yyyy-MM-ddTHH:mm:ss,中间有个T</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>若需要按照指定的日期格式进行解析，则我们需要在对应的日期字段的get、set方法上添加对应注解，如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@JSON(format=<span class="string">"yyyy-MM-dd HH:mm:ss"</span>)</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/29/struts2-ajax-date/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -801,9 +225,9 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
